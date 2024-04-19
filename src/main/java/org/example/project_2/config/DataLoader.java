@@ -30,8 +30,8 @@ public class DataLoader implements ServletContextListener {
 
 
     private void initData() {
-        List<Order> orders = new ArrayList<>();
         entityManager.getTransaction().begin();
+        List<Order> orders = new ArrayList<>();
         List<Status> statuses = new ArrayList<>();
         for (StatusName statusName : StatusName.values()) {
             Status status = Status.builder()
@@ -43,7 +43,7 @@ public class DataLoader implements ServletContextListener {
         int i = 0;
         Random random = new Random();
         if (OrderRepo.findAll().isEmpty()) {
-            while (i < 10) {
+            while (i < 3) {
                 Order order = Order.builder()
                         .status(statuses.get(random.nextInt(0, 3)))
                         .build();
@@ -61,7 +61,7 @@ public class DataLoader implements ServletContextListener {
                 .age(24)
                 .email("hikmat@gmail.com")
                 .password("1")
-                .orders(List.of(orders.get(random.nextInt(0, 10))))
+                .orders(List.of(orders.get(random.nextInt(0, 3))))
                 .build();
         User user2 = User.builder()
                 .firstName("Toshmat")
@@ -69,7 +69,7 @@ public class DataLoader implements ServletContextListener {
                 .age(22)
                 .email("toshmat@gmail.com")
                 .password("2")
-                .orders(List.of(orders.get(random.nextInt(0, 10))))
+                .orders(List.of(orders.get(random.nextInt(0, 3))))
                 .build();
         User user3 = User.builder()
                 .firstName("Eshmat")
@@ -77,7 +77,7 @@ public class DataLoader implements ServletContextListener {
                 .email("eshmat@gmail.com")
                 .age(21)
                 .password("3")
-                .orders(List.of(orders.get(random.nextInt(0, 10))))
+                .orders(List.of(orders.get(random.nextInt(0, 3))))
                 .build();
 
 
