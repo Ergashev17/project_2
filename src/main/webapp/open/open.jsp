@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
 </head>
 <body>
 <h1>Open</h1>

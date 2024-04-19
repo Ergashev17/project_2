@@ -33,6 +33,18 @@
     </div>
 </nav>
 
+<div class="col-3 border right p-4">
+    <ul>
+        <% if (currentUser != null) { %>
+        <a href="order/order.jsp">
+            <li class="list-group-item ">Order</li>
+        </a>
+        <a href="user/user.jsp">
+            <li class="list-group-item ">User</li>
+        </a>
+        <% } %>
+    </ul>
+</div>
 
 <div class="col-9">
     <hr>
@@ -66,7 +78,6 @@
             </tbody>
         </table>
     </div>
-</div>
 </div>
 </body>
 </html>

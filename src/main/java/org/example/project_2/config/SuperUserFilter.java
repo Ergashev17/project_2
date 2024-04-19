@@ -14,7 +14,7 @@ import java.util.UUID;
 
 import static org.example.project_2.config.DBConfig.entityManagerFactory;
 
-@WebFilter(urlPatterns = "/superuser/*")
+@WebFilter(urlPatterns = {"/user/*","/order/*"})
 public class SuperUserFilter implements Filter {
 
     @Override
