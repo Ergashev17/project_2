@@ -15,6 +15,7 @@
 <%
     List<Order> orders = OrderRepo.findAll();
     List<User> users = UserRepo.findAll();
+    User currentUser = (User) request.getSession().getAttribute("currentUser");
 %>
 
 <nav class="navbar bg-body-tertiary bg-dark">
@@ -23,7 +24,11 @@
         <a class="btn btn-dark text-white" href="inprogres/inprogres.jsp">Inprogres</a>
         <a class="btn btn-dark text-white" href="complete/complete.jsp">Complete</a>
         <div>
+            <% if (currentUser == null) { %>
             <a class="btn btn-dark text-white" href="auth/login.jsp">Login</a>
+            <% } else { %>
+            <a class="btn btn-dark text-white" href="../logout">Logout</a>
+            <% } %>
         </div>
     </div>
 </nav>

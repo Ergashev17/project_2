@@ -29,10 +29,10 @@ public class UserRepo {
                     .setParameter("email", email)
                     .getSingleResult();
 
-            if (user.getPassword().equals(password)) {
+            if (user != null && user.getPassword() != null && user.getPassword().equals(password)) {
                 return user;
             } else {
-                throw new RuntimeException("Parol noto'g'ri!");
+                throw new RuntimeException("Parol noto'g'ri !");
             }
         } catch (NoResultException e) {
             throw new RuntimeException("Foydalanuvchi topilmadi!");
