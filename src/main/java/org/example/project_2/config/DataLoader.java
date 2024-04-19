@@ -24,7 +24,7 @@ public class DataLoader implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         entityManagerFactory = Persistence.createEntityManagerFactory("git_project");
         entityManager = entityManagerFactory.createEntityManager();
-        initData();
+//        initData();
         ServletContextListener.super.contextInitialized(sce);
     }
 
@@ -52,7 +52,7 @@ public class DataLoader implements ServletContextListener {
                 i++;
             }
         } else {
-            System.out.println("Uje order table da malumot bor");
+            System.out.println("Uje order table da malumot boru ");
         }
 
         User user1 = User.builder()
