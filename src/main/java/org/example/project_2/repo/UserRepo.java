@@ -1,6 +1,7 @@
 package org.example.project_2.repo;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import org.example.project_2.entity.Order;
 import org.example.project_2.entity.User;
 
@@ -18,6 +19,23 @@ public class UserRepo {
             return users;
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static User findByEmailAndPassword(String email, String password) {
+        try {
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            User user = entityManager.createQuery("select u from User u where u.email=:email", User.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+
+            if (user.getPassword().equals(password)) {
+                return user;
+            } else {
+                throw new RuntimeException("Parol noto'g'ri!");
+            }
+        } catch (NoResultException e) {
+            throw new RuntimeException("Foydalanuvchi topilmadi!");
         }
     }
 }

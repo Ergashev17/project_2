@@ -59,18 +59,24 @@ public class DataLoader implements ServletContextListener {
                 .firstName("Hikmat")
                 .lastName("Hikmatov")
                 .age(24)
+                .email("hikmat@gmail.com")
+                .password("1")
                 .orders(List.of(orders.get(random.nextInt(0, 10))))
                 .build();
         User user2 = User.builder()
                 .firstName("Toshmat")
                 .lastName("Toshmatov")
                 .age(22)
+                .email("toshmat@gmail.com")
+                .password("2")
                 .orders(List.of(orders.get(random.nextInt(0, 10))))
                 .build();
         User user3 = User.builder()
                 .firstName("Eshmat")
                 .lastName("Eshmatov")
+                .email("eshmat@gmail.com")
                 .age(21)
+                .password("3")
                 .orders(List.of(orders.get(random.nextInt(0, 10))))
                 .build();
 
