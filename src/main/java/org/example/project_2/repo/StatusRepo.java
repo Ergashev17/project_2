@@ -1,46 +1,50 @@
 package org.example.project_2.repo;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
+import jakarta.persistence.EntityTransaction;
 import org.example.project_2.entity.Order;
+import org.example.project_2.entity.Status;
 
 import java.util.List;
 
 import static org.example.project_2.config.DBConfig.entityManagerFactory;
 
-public class OrderRepo {
+public class StatusRepo {
 
-    public static List<Order> findAll() {
+
+    public static List<Status> findAll() {
         try {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
-            List<Order> orders = entityManager.createQuery("SELECT o FROM Order o", Order.class)
+            List<Status> statuses = entityManager.createQuery("SELECT s FROM Status s", Status.class)
                     .getResultList();
             entityManager.close();
-            return orders;
+            return statuses;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static Order findById(int orderId) {
+    public static Status findById(int statusId) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return entityManager.find(Order.class, orderId);
+            return entityManager.find(Status.class, statusId);
         } finally {
             entityManager.close();
         }
     }
 
-    public static void edit(Order order) {
-
+    public static void edit(Status status) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(order);
-            entityManager.getTransaction().commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            entityManager.getTransaction().rollback();
+            transaction.begin();
+            entityManager.merge(status);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw new RuntimeException(e);
         } finally {
             entityManager.close();
         }
